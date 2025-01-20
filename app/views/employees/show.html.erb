@@ -1,0 +1,18 @@
+<h1>Employee Details</h1>
+
+<div>
+  <strong>First Name:</strong> <%= @employee.first_name %>
+</div>
+<div>
+  <strong>Last Name:</strong> <%= @employee.last_name %>
+</div>
+<div>
+  <strong>Email:</strong> <%= @employee.email %>
+</div>
+
+<div>
+  <%= link_to "Edit Employee", edit_employee_path(@employee) %> |
+  <%= link_to "Back to Employees", employees_path %>
+
+  <%= button_to "Destroy Employee", @employee, method: :delete %>
+</div>

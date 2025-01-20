@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-    before_action :set_employee, only: %i[edit update destroy]
+    before_action :set_employee, only: %i[show edit update destroy]
 
     def index
         @employees = Employee.all
@@ -12,15 +12,17 @@ class EmployeesController < ApplicationController
     def edit
     end
 
+    def show
+    end
+
     def create
         @employee = Employee.new(employee_params)
 
         respond_to do |format|
             if @employee.save
-                format.html {redirect_to employees_path, notice: "Employee is successfully created."}
-                format.json {render :new, status: :created, location: @employee}
+                redirect_to employees_path, notice: "Employee successfully created."
             else 
-                format.html {render :new}
+                render :new
             end
         end
     end
@@ -28,9 +30,9 @@ class EmployeesController < ApplicationController
     def update
         respond_to do |format|
             if @employee.update(employee_params)
-                format.html {redirect_to employees_path, notice: "Employee is successfully updated."}
+                redirect_to employees_path, notice: "Employee is successfully updated."
             else
-                format.html {render :edit}
+                render :edit
             end
         end
     end

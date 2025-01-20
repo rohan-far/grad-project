@@ -1,0 +1,18 @@
+
+<h1>Employee List</h1>
+
+<ul>
+    <% @employees.each do |e| %>
+            <li>Fristname: <%= e.first_name %></li>
+            <li>Lastname: <%=e.last_name %></li>
+            <li>Email: <%=e.email %></li>
+
+            <p>
+                <%= link_to "Show this employee", employee_path(e) %>
+            </p>
+            <hr>
+            
+    <% end %>
+</ul>
+
+<%= link_to "Add New Employee", new_employee_path %>
