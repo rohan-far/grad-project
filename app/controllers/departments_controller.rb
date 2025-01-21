@@ -1,5 +1,5 @@
 class DepartmentsController < ApplicationController
-    before_action :set_department, only: %i[edit update destroy]
+    before_action :set_department, only: %i[destroy]
 
     def index
         @departments = Department.all
@@ -19,14 +19,10 @@ class DepartmentsController < ApplicationController
         end
     end
 
-    def edit
-    end
-
     def destroy
         @department.destroy!
         redirect_to departments_path, notice: 'Department was successfully deleted.'
     end
-
 
     private
 
@@ -35,6 +31,6 @@ class DepartmentsController < ApplicationController
     end
     
     def department_params
-        params.reqiure(:department).permit(:name)
+        params.require(:department).permit(:name)
     end
 end

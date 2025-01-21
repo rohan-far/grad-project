@@ -1,0 +1,13 @@
+<h1>All Departments</h1>
+
+<ul>
+  <% @departments.each do |d| %>
+    <li>Department Name: <%= d.name %></li>
+    <p>
+      <%= link_to "Destroy Department", department_path(d), method: :delete %>
+    </p>
+    <hr>
+  <% end %>
+</ul>
+
+<%= link_to 'Add New', new_department_path %>
