@@ -20,9 +20,16 @@ class DepartmentsController < ApplicationController
     end
 
     def destroy
-        @department.destroy!
-        redirect_to departments_path, notice: 'Department was successfully deleted.'
-    end
+        if @department.employees.exists?
+          flash[:alert] = "Cannot delete department with associated employees."
+        else
+          @department.destroy
+          flash[:notice] = "Department deleted successfully."
+        end
+      
+        redirect_to departments_path
+      end
+      
 
     private
 
