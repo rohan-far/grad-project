@@ -14,6 +14,16 @@
       <%= form.label :email, style: "display: block" %>
       <%= form.text_field :email %>
     </div>
+
+    <div>
+      <%= form.label :yearly_salary %>
+      <%= form.number_field :yearly_salary %>
+    </div>
+
+    <div>
+      <%= form.label :department_id %>
+      <%= form.select :department_id, Department.pluck(:name, :id)%>
+    </div>
     
     <div>
       <%= form.submit %>

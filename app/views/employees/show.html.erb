@@ -9,6 +9,13 @@
 <div>
   <strong>Email:</strong> <%= @employee.email %>
 </div>
+<div>
+  <% if @employee.yearly_salary.present? %>
+    <strong>Salary:</strong> <%= number_to_currency(@employee.yearly_salary) %>
+  <% else %>
+    <strong>Salary:</strong> Not provided
+  <% end %>
+</div>
 
 <div>
   <%= link_to "Edit Employee", edit_employee_path(@employee) %> |
