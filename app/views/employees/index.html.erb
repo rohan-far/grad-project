@@ -6,6 +6,9 @@
             <li>Fristname: <%= e.first_name %></li>
             <li>Lastname: <%=e.last_name %></li>
             <li>Email: <%=e.email %></li>
+            <li>Salary: <%=e.yearly_salary %></li>
+            <li>Department: <%=e.department_id %></li>
+
 
             <p>
                 <%= link_to "Show this employee", employee_path(e) %>
@@ -14,5 +17,3 @@
             
     <% end %>
 </ul>
-
-<%= link_to "Add New Employee", new_employee_path %>

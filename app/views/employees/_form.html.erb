@@ -16,13 +16,13 @@
     </div>
 
     <div>
-      <%= f.label :yearly_salary %>
-      $<%= f.number_field :yearly_salary %>
+      <%= form.label :yearly_salary %>
+      $<%= form.number_field :yearly_salary %>
     </div>
 
     <div>
-      <%= f.label :department_id %>
-      <%= f.select :department_id, Department.pluck(:name, :id)%>
+      <%= form.label :department_id %>
+      <%= form.select :department_id, Department.pluck(:name, :id)%>
     </div>
     
     <div>
