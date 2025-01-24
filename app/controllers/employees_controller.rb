@@ -37,6 +37,11 @@ class EmployeesController < ApplicationController
             redirect_to employees_path, notice: 'Employee was successfully deleted.'
     end
 
+    def send_invoices
+        SendInvoicesJob.perform_later
+        redirect_to employees_path, notice: "Invoices are being sent to employees."
+    end
+
     private
 
     def set_employee

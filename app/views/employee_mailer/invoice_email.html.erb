@@ -1,0 +1,16 @@
+ 
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p><%= @employee.first_name %></p> <%= @employee.last_name %>
+
+    <ul>
+        <li>Monthly Salary<%= number_to_currency(@employee.yearly_salary / 12) %></li>  
+        <li>GST<%= number_to_currency(@employee.yearly_salary / 12 * 0.1) %></li>  
+        <li>Total<%= number_to_currency(@total_amount) %></li>  
+    </ul> 
+  </body>
+</html>

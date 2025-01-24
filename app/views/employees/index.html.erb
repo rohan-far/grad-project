@@ -13,6 +13,7 @@
             <p>
                 <%= link_to "Show this employee", employee_path(e) %>
             </p>
+            <%= button_to 'Your Invoice', send_invoices_employees_path(e), method: :post %>
             <hr>
             
     <% end %>
