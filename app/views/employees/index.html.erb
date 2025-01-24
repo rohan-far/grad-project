@@ -7,12 +7,13 @@
             <li>Lastname: <%=e.last_name %></li>
             <li>Email: <%=e.email %></li>
             <li>Salary: <%=e.yearly_salary %></li>
-            <li>Department: <%=e.department_id %></li>
+            <li>Department: <%=e.department.name %></li>
 
 
             <p>
                 <%= link_to "Show this employee", employee_path(e) %>
             </p>
+            <%= button_to 'Your Invoice', send_invoices_employees_path(e), method: :post %>
             <hr>
             
     <% end %>

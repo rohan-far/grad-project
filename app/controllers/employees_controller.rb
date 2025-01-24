@@ -17,29 +17,29 @@ class EmployeesController < ApplicationController
 
     def create
         @employee = Employee.new(employee_params)
-
-        respond_to do |format|
-            if @employee.save
-                redirect_to employees_path, notice: "Employee successfully created."
-            else 
-                render :new
-            end
+        if @employee.save
+            redirect_to employees_path, notice: "Employee successfully created."
+        else 
+            render :new
         end
     end
 
     def update
-        respond_to do |format|
-            if @employee.update(employee_params)
-                redirect_to employees_path, notice: "Employee is successfully updated."
-            else
-                render :edit
-            end
+        if @employee.update(employee_params)
+            redirect_to employees_path, notice: "Employee is successfully updated."
+        else
+            render :edit
         end
     end
     
     def destroy
         @employee.destroy!
-        redirect_to employees_path, notice: 'Employee was successfully deleted.'
+            redirect_to employees_path, notice: 'Employee was successfully deleted.'
+    end
+
+    def send_invoices
+        SendInvoicesJob.perform_later
+        redirect_to employees_path, notice: "Invoices are being sent to employees."
     end
 
     private

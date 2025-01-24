@@ -1,25 +1,38 @@
 <h1>Employee Details</h1>
 
-<div>
-  <strong>First Name:</strong> <%= @employee.first_name %>
-</div>
-<div>
-  <strong>Last Name:</strong> <%= @employee.last_name %>
-</div>
-<div>
-  <strong>Email:</strong> <%= @employee.email %>
-</div>
-<div>
-  <% if @employee.yearly_salary.present? %>
-    <strong>Salary:</strong> <%= number_to_currency(@employee.yearly_salary) %>
-  <% else %>
-    <strong>Salary:</strong> Not provided
-  <% end %>
-</div>
+  <div>
+    <strong>First Name:</strong> <%= @employee.first_name %>
+  </div>
 
-<div>
-  <%= link_to "Edit Employee", edit_employee_path(@employee) %> |
-  <%= link_to "Back to Employees", employees_path %>
+  <div>
+    <strong>Last Name:</strong> <%= @employee.last_name %>
+  </div>
 
-  <%= button_to "Destroy Employee", @employee, method: :delete %>
-</div>
+  <div>
+    <strong>Email:</strong> <%= @employee.email %>
+  </div>
+
+  <div>
+    <strong>Department:</strong> 
+    <% if @employee.department.present? %>
+      <%= @employee.department.name %>
+    <% else %>
+      Not assigned
+    <% end %>
+  </div>
+  
+  <div>
+    <% if @employee.yearly_salary.present? %>
+      <strong>Salary:</strong> <%= number_to_currency(@employee.yearly_salary) %>
+    <% else %>
+      <strong>Salary:</strong> Not provided
+    <% end %>
+  </div>
+
+  <div>
+    <%= link_to "Edit Employee", edit_employee_path(@employee) %> |
+    <%= link_to "Back to Employees", employees_path %>
+
+    <%= button_to "Destroy Employee", @employee, method: :delete %>
+    
+  </div>
