@@ -18,6 +18,11 @@
     <div>
       <%= form.label :yearly_salary %>
       <%= form.number_field :yearly_salary %>
+      <% if @employee.errors[:yearly_salary].any? %>
+        <div style="color: red;">
+          <%= @employee.errors[:yearly_salary].first %>
+        </div>
+      <% end %>
     </div>
 
     <div>
