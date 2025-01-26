@@ -1,8 +1,13 @@
 class EmployeeService
     def self.list_all
-      Employee.all
+      employees = Employee.all
+      if employees.any?
+        { success: true, employees: employees }
+      else
+        { success: false, employees: [] }
+      end
     end
-  
+    
     def self.create(params)
       employee = Employee.new(params)
       if employee.save

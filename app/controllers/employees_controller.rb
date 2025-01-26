@@ -2,7 +2,12 @@ class EmployeesController < ApplicationController
     before_action :set_employee, only: %i[show edit update destroy]
 
     def index
-        @employees = Employee.all
+        service = EmployeeService.list_all
+        if service[:success]
+            @employees = service[:employees]
+        else
+            @employees = []
+        end
     end
 
     def new
@@ -16,8 +21,8 @@ class EmployeesController < ApplicationController
     end
 
     def create
-        result = EmployeeService.create(employee_params)
-        if result[:success]
+        service = EmployeeService.create(employee_params)
+        if service[:success]
             redirect_to employees_path, notice: "Employee successfully created."
         else 
             @employee = Employee.new(employee_params)
@@ -26,8 +31,8 @@ class EmployeesController < ApplicationController
     end
 
     def update
-        result = EmployeeService.update(@employee, employee_params)
-        if result[:success]
+        service = EmployeeService.update(@employee, employee_params)
+        if service[:success]
             redirect_to employees_path, notice: "Employee is successfully updated."
         else
             @employee = @employee

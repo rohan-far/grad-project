@@ -2,7 +2,12 @@ class DepartmentsController < ApplicationController
     before_action :set_department, only: %i[destroy]
 
     def index
-        @departments = Department.all
+        service = DepartmentService.list_all
+        if service[:success]
+            @departments = service[:departments]
+        else
+            @departments = []
+        end
     end
 
     def new
@@ -10,9 +15,8 @@ class DepartmentsController < ApplicationController
     end
 
     def create
-        @department = Department.new(department_params)
-
-        if @department.save
+        service = Department.create(department_params)
+        if [:success]
             redirect_to departments_path, notice: 'Department was successfully created.'
         else
             render :new

@@ -1,6 +1,11 @@
-class DepartmentServise
+class DepartmentService
     def self.list_all
-        Department.all
+        departments = Department.all
+        if departments.any?
+            {success: true, departments: departments}
+        else 
+            {success: false, departments: []}
+        end
     end
 
     def self.create(params)
@@ -16,6 +21,6 @@ class DepartmentServise
             { success: false, error: "Cannot delete" }
         else department.destroy
             {success: true}
+        end
     end
-
 end
