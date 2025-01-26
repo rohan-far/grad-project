@@ -8,7 +8,7 @@ class EmployeeService
       if employee.save
         { success: true, employee: employee }
       else
-        { success: false, errors: employee.errors }
+        { success: false, errors: employee.errors.full_messages }
       end
     end
   

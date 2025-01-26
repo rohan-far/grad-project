@@ -16,24 +16,27 @@ class EmployeesController < ApplicationController
     end
 
     def create
-        @employee = Employee.new(employee_params)
-        if @employee.save
+        result = EmployeeService.create(employee_params)
+        if result[:success]
             redirect_to employees_path, notice: "Employee successfully created."
         else 
+            @employee = Employee.new(employee_params)
             render :new, status: :unprocessable_entity
         end
     end
 
     def update
-        if @employee.update(employee_params)
+        result = EmployeeService.update(@employee, employee_params)
+        if result[:success]
             redirect_to employees_path, notice: "Employee is successfully updated."
         else
+            @employee = @employee
             render :edit
         end
     end
     
     def destroy
-        @employee.destroy!
+        EmployeeService.destroy(@employee)
             redirect_to employees_path, notice: 'Employee was successfully deleted.'
     end
 
