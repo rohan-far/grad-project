@@ -2,7 +2,12 @@ class EmployeesController < ApplicationController
     before_action :set_employee, only: %i[show edit update destroy]
 
     def index
-        @employees = Employee.all
+        service = EmployeeService.list_all
+        if service[:success]
+            @employees = service[:employees]
+        else
+            @employees = []
+        end
     end
 
     def new
@@ -16,24 +21,27 @@ class EmployeesController < ApplicationController
     end
 
     def create
-        @employee = Employee.new(employee_params)
-        if @employee.save
+        service = EmployeeService.create(employee_params)
+        if service[:success]
             redirect_to employees_path, notice: "Employee successfully created."
         else 
+            @employee = Employee.new(employee_params)
             render :new, status: :unprocessable_entity
         end
     end
 
     def update
-        if @employee.update(employee_params)
+        service = EmployeeService.update(@employee, employee_params)
+        if service[:success]
             redirect_to employees_path, notice: "Employee is successfully updated."
         else
+            @employee = @employee
             render :edit
         end
     end
     
     def destroy
-        @employee.destroy!
+        EmployeeService.destroy(@employee)
             redirect_to employees_path, notice: 'Employee was successfully deleted.'
     end
 
