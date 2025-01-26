@@ -26,15 +26,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_25_054753) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "department_id", default: 14
+    t.bigint "department_id", default: 2, null: false
     t.decimal "yearly_salary"
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.string "role", default: "default"
     t.index ["department_id"], name: "index_employees_on_department_id"
-    t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
 
   add_foreign_key "employees", "departments"

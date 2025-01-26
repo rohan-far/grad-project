@@ -20,7 +20,7 @@ class EmployeesController < ApplicationController
         if @employee.save
             redirect_to employees_path, notice: "Employee successfully created."
         else 
-            render :new
+            render :new, status: :unprocessable_entity
         end
     end
 
