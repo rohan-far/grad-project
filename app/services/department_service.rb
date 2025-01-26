@@ -17,7 +17,7 @@ class DepartmentService
         end
     end
     def self.destroy!(department)
-        if department.employees.exist?
+        if department.employees.any?
             { success: false, error: "Cannot delete" }
         else department.destroy
             {success: true}

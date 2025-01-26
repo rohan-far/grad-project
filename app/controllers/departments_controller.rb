@@ -15,8 +15,8 @@ class DepartmentsController < ApplicationController
     end
 
     def create
-        service = Department.create(department_params)
-        if [:success]
+        service = DepartmentService.create(department_params)
+        if service[:success]
             redirect_to departments_path, notice: 'Department was successfully created.'
         else
             render :new
@@ -24,15 +24,9 @@ class DepartmentsController < ApplicationController
     end
 
     def destroy
-        if @department.employees.exists?
-          flash[:alert] = "Cannot delete department with associated employees."
-        else
-          @department.destroy
-          flash[:notice] = "Department deleted successfully."
-        end
-      
-        redirect_to departments_path
-      end
+        service = DepartmentService.destroy!(@department)
+        
+    end
       
 
     private
