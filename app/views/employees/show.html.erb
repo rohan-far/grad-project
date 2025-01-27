@@ -1,11 +1,7 @@
 <h1>Employee Details</h1>
 
   <div>
-    <strong>First Name:</strong> <%= @employee.first_name %>
-  </div>
-
-  <div>
-    <strong>Last Name:</strong> <%= @employee.last_name %>
+    <strong>Name:</strong> <%= @employee.full_name %>
   </div>
 
   <div>
@@ -13,20 +9,11 @@
   </div>
 
   <div>
-    <strong>Department:</strong> 
-    <% if @employee.department.present? %>
-      <%= @employee.department.name %>
-    <% else %>
-      Not assigned
-    <% end %>
+    <strong>Department:</strong> <%= @employee.department_present %>
   </div>
   
   <div>
-    <% if @employee.yearly_salary.present? %>
-      <strong>Salary:</strong> <%= number_to_currency(@employee.yearly_salary) %>
-    <% else %>
-      <strong>Salary:</strong> Not provided
-    <% end %>
+    <strong>Salary:</strong> <%= @employee.salary %>
   </div>
 
   <div>

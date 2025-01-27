@@ -4,7 +4,7 @@ class EmployeesController < ApplicationController
     def index
         service = EmployeeService.list_all
         if service[:success]
-            @employees = service[:employees]
+            @employees = service[:employees].map(&:decorate)
         else
             @employees = []
         end
@@ -18,6 +18,7 @@ class EmployeesController < ApplicationController
     end
 
     def show
+        @employee = @employee.decorate
     end
 
     def create
