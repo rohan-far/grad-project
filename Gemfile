@@ -26,6 +26,9 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+gem 'graphql'
+
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -73,3 +76,4 @@ gem "factory_bot_rails", "~> 6.4"
 gem "sidekiq", "~> 7.3"
 
 gem 'draper'
+gem "graphiql-rails", group: :development
