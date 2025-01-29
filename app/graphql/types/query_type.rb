@@ -25,7 +25,7 @@ module Types
     field :employees, [Types::EmployeeType], null: false
 
     def employees
-      Employee.all
+      Employee.include(:department).all
     end
   end
 end
