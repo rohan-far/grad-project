@@ -3,11 +3,7 @@ class DepartmentsController < ApplicationController
 
     def index
         service = DepartmentService.list_all
-        if service[:success]
-            @departments = service[:departments]
-        else
-            @departments = []
-        end
+        @departments = service[:departments] || []
     end
 
     def new
