@@ -1,6 +1,7 @@
 class Employee < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  before_validation :set_defaults, on: :create
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -11,4 +12,14 @@ class Employee < ApplicationRecord
     validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP } 
     validates :department, presence: true
     validates :yearly_salary, presence: true, numericality: { greater_than: 0 }
+
+    private
+
+    def set_defaults
+      self.yearly_salary ||= 1.0
+      self.first_name ||= "New"
+      self.last_name ||= "Employee"
+      self.yearly_salary ||= 0.0
+      self.department ||= Department.first
+    end
 end
