@@ -8,6 +8,7 @@ class Ability
       can :manage, :all
     else
       can :read, Employee, id: employee.id
+      cannot :read, Department
     end
   end
 end
