@@ -1,23 +1,35 @@
 class EmployeesController < ApplicationController
     before_action :set_employee, only: %i[show edit update destroy]
+    skip_before_action :authenticate_employee!, only: [:new, :create]
 
     def index
-        service = EmployeeService.list_all
-        @employees = service[:employees].map(&:decorate) || []
+        if current_employee.admin?  
+            authorize! :manage, Employee
+            service = EmployeeService.list_all
+            @employees = service[:employees].map(&:decorate) || []
+        else
+            redirect_to employee_path(current_employee), alert: "You can only view your own profile."
+        end
     end
 
     def new
         @employee = Employee.new
+        authorize! :create, @employee
     end
 
     def edit
+        authorize! :update, @employee
     end
 
     def show
-        
+        if current_employee.admin? || current_employee.id == @employee.id
+        else
+            redirect_to root_path, alert: "You are not authorized to access this page."
+        end
     end
 
     def create
+        authorize! :create, @employee
         service = EmployeeService.create(employee_params)
         if service[:success]
             redirect_to employees_path, notice: "Employee successfully created."
@@ -28,6 +40,7 @@ class EmployeesController < ApplicationController
     end
 
     def update
+        authorize! :update, @employee       
         service = EmployeeService.update(@employee, employee_params)
         if service[:success]
             redirect_to employees_path, notice: "Employee is successfully updated."
@@ -38,6 +51,7 @@ class EmployeesController < ApplicationController
     end
     
     def destroy
+        authorize! :destroy, @employee
         EmployeeService.destroy(@employee)
             redirect_to employees_path, notice: 'Employee was successfully deleted.'
     end

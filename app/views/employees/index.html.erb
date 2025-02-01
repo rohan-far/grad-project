@@ -1,19 +1,26 @@
 <h1>Employee List</h1>
 
 <ul>
-    <% @employees.each do |e| %>
-            <li>First Name: <%= e.first_name %></li>
-            <li>Last Name: <%=e.last_name %></li>
-            <li>Email: <%=e.email %></li>
-            <li>Salary: <%=e.salary %></li>
-            <li>Department: <%=e.department.name %></li>
+  <% @employees.each do |e| %>
+    <li>First Name: <%= e.first_name %></li>
+    <li>Last Name: <%= e.last_name %></li>
+    <li>Email: <%= e.email %></li>
+    <li>Salary: <%= e.salary %></li>
+    <li>Department: <%= e.department.name %></li>
 
+    <p>
+      <%= link_to "Show this employee", employee_path(e) %>
+    </p>
 
-            <p>
-                <%= link_to "Show this employee", employee_path(e) %>
-            </p>
-            <%= button_to 'Your Invoice', send_invoices_employees_path(e), method: :post %>
-            <hr>
-            
+    <% if can?(:update, e) %>
+      <%= link_to "Edit", edit_employee_path(e) %>
     <% end %>
+
+    <% if can?(:destroy, e) %>
+      <%= link_to "Delete", e, method: :delete, data: { confirm: "Are you sure?" } %>
+    <% end %>
+
+    <%= button_to 'Your Invoice', send_invoices_employees_path(e), method: :post %>
+    <hr>
+  <% end %>
 </ul>
