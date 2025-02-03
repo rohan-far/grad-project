@@ -1,6 +1,3 @@
-
-
-/* General Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -8,13 +5,11 @@ body {
     padding: 20px;
 }
 
-/* Header Styling */
 h1 {
     text-align: center;
     color: #333;
 }
 
-/* Employee List */
 ul {
     list-style-type: none;
     padding: 0;
@@ -28,7 +23,6 @@ li {
     color: #444;
 }
 
-/* Employee Card */
 ul > li:first-child {
     font-size: 18px;
 }
@@ -40,10 +34,6 @@ hr {
     margin: 15px 0;
 }
 
-/* Employee Container */
-
-
-/* Buttons */
 p {
     margin: 10px 0;
 }
@@ -74,7 +64,6 @@ button:hover {
     background-color: #218838;
 }
 
-/* Form Container */
 form {
     max-width: 500px;
     margin: 20px auto;
@@ -99,6 +88,7 @@ label {
 input[type="text"],
 input[type="email"],
 input[type="number"],
+input[type="password"],
 select {
     width: 100%;
     padding: 10px;
@@ -114,13 +104,11 @@ select:focus {
     outline: none;
 }
 
-/* Error Message */
 div[style="color: red;"] {
     font-size: 14px;
     margin-top: 5px;
 }
 
-/* Submit Button */
 input[type="submit"] {
     background-color: #28a745;
     color: white;
