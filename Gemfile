@@ -75,5 +75,8 @@ gem "factory_bot_rails", "~> 6.4"
 
 gem "sidekiq", "~> 7.3"
 
+gem 'cancancan'
+
+
 gem 'draper'
 gem "graphiql-rails", group: :development

@@ -16,10 +16,11 @@
     <strong>Salary:</strong> <%= @employee.salary %>
   </div>
 
+<% if current_employee&.admin? %>
   <div>
     <%= link_to "Edit Employee", edit_employee_path(@employee) %> |
     <%= link_to "Back to Employees", employees_path %>
 
     <%= button_to "Destroy Employee", @employee, method: :delete %>
-    
   </div>
+<% end %>

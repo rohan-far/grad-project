@@ -1,12 +1,15 @@
 class DepartmentsController < ApplicationController
     before_action :set_department, only: %i[destroy]
+    
 
     def index
+        authorize! :read, Department
         service = DepartmentService.list_all
         @departments = service[:departments] || []
     end
 
     def new
+        authorize! :read, Department
         @department = Department.new
     end
 
