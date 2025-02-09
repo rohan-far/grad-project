@@ -35,7 +35,6 @@ class EmployeesController < ApplicationController
         if service[:success]
             redirect_to employees_path, notice: "Employee successfully created."
         else 
-            @employee = Employee.new(employee_params)
             render :new, status: :unprocessable_entity
         end
     end

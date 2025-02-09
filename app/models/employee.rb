@@ -32,3 +32,12 @@ class Employee < ApplicationRecord
     new_record? && !password.present?
   end
 end
+
+=begin
+
+  having issue when admin try to create new employee it shows "You are already signed in" it's happening because RegistrationsController#create only 
+  allows self-registration, meaning logged-in users (admins) cannot create employees using Devise's default flow. Devise’s RegistrationsController 
+  includes a before_action :require_no_authentication, which prevents signed-in users from signing up another user. So I added custom 
+  controller to override devise native behaviour. Now admin can create new employee however I see another issue. And that is when employee try to self register
+  after click sign_up button, next page comes is the login page again.
+=end
