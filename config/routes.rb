@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :employees
+  devise_for :employees, controllers: { registrations: "employees/registrations" }
   
   if Rails.env.development?
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"

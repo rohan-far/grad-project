@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(employee)
-    employee ||= Employee.new  
+    return unless employee
 
     if employee.admin?
       can :manage, :all
