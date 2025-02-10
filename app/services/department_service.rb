@@ -1,6 +1,6 @@
 class DepartmentService
     def self.list_all
-        departments = Department.all
+        departments = Department.includes(:employees)
         if departments.any?
             {success: true, departments: departments}
         else 
@@ -17,10 +17,12 @@ class DepartmentService
         end
     end
     def self.destroy!(department)
-        if department.employees.any?
-            { success: false, error: "Cannot delete" }
-        else department.destroy
-            {success: true}
+        if department.employees.exists?
+          { success: false, error: "Cannot delete department with employees." }
+        elsif department.destroy
+          { success: true }
+        else
+          { success: false, error: department.errors.full_messages }
         end
-    end
+      end
 end
