@@ -5,7 +5,7 @@
 Acme Corporation, the world’s leading manufacturer of explosives, requires an employee registry to manage its workforce efficiently. This registry is developed using Ruby on Rails with PostgreSQL as the database. The project consists of two primary modules: Departments and Employees, along with additional features such as authentication, invoicing, and GraphQL support.
 
 ## Project Setup
-1. Install Ruby 3.0.6
+1. Install Ruby 3.2.2
 2. Install Rails 7.1.5.1
 3. Set up PostgreSQL as the database
 4. Redis (for Sidekiq background jobs)
@@ -45,3 +45,4 @@ bundle exec sidekiq
 ```
 bundle exec rspec
 ```
+
